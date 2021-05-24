@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class Tests extends BacktrackingAVL{
 
@@ -141,6 +141,10 @@ public class Tests extends BacktrackingAVL{
             Node t4 = it4.next();
             if((t1.value != t2.value) || (t3.value != t4.value) || (t1.height != t2.height) || (t3.height != t4.height)) {
                 System.out.println("trees aren't match");
+                System.out.println("Expected Key(InOrder): " + t1.value + " Expected Height(InOrder): " + t1.height);
+                System.out.println("Actual Key(InOrder): " + t2.value + " Actual Height(InOrder): " + t2.height);
+                System.out.println("Expected Key(PreOrder): " + t3.value + " Expected Height(PreOrder): " + t3.height);
+                System.out.println("Actual Key(PreOrder): " + t4.value + " Actual Height(PreOrder): " + t4.height);
                 return false;
             }
         }
