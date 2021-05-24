@@ -147,9 +147,29 @@ public class Tests extends BacktrackingAVL{
                 System.out.println("Actual Key(PreOrder): " + t4.value + " Actual Height(PreOrder): " + t4.height);
                 return false;
             }
+            if(!isPointersTheSame(t1,t2,"InOrder:")||
+            !isPointersTheSame(t3,t4,"PreOrder:")){
+                return false;
+            }
         }
         if(it1.hasNext() || it2.hasNext() || it3.hasNext() || it4.hasNext()){
             System.out.println("one tree is bigger than the other");
+            return false;
+        }
+        return true;
+    }
+    private String NodeToString(Node n){
+        return (n == null) ? "null" : "" + n.value;
+    }
+
+    private boolean isPointersTheSame(Node n1, Node n2, String order){
+        if(!(NodeToString(n1.parent).equals(NodeToString(n2.parent))) ||
+                !(NodeToString(n1.right).equals(NodeToString(n2.right)))
+                || !(NodeToString(n1.left).equals(NodeToString(n2.left))) ){
+            System.out.println(order);
+            System.out.println("Expected Parent: " + NodeToString(n1.parent) + " Actual Parent: " + NodeToString(n2.parent));
+            System.out.println("Expected Left: " + NodeToString(n1.left) + " Actual Left: " + NodeToString(n2.left));
+            System.out.println("Expected Right: " + NodeToString(n1.right) + " Actual Right: " + NodeToString(n2.right));
             return false;
         }
         return true;
