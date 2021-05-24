@@ -41,9 +41,19 @@ public class Tests extends BacktrackingAVL{
         }
         if (passed) System.out.println("Passed all tests");
     }
+
     public static boolean BTreeBacktracking(){
-        // * TESTING ONLY CONTINUES BACKTRACKING
-        BacktrackingBTree<Integer> tree = new BacktrackingBTree();
+        if(true)
+            throw new UnsupportedOperationException("You should add this constructors to the Backtracking BTree class, delete this afterwards");
+        /*
+    public BacktrackingBTree(int order) {
+        super(order);
+    }
+    public BacktrackingBTree() {
+        super();
+    }*/
+        BacktrackingBTree<Integer> tree = new BacktrackingBTree( ((int)(Math.random()*6)+2));
+
 
         //INSERT HERE HOW MANY ITEMS YOU WANT TO BE INSERTED
         int num = (int)Math.random()*10000;
