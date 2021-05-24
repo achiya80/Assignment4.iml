@@ -36,14 +36,14 @@ public class Tests extends BacktrackingAVL{
     public static void testBTreeBacktracking(){
         System.out.println("test BTree Backtracking:");
         boolean passed = true;
-        for(int i = 0;i < 1000;i++) {
+        for(int i = 0;i < 300;i++) {
             passed &= BTreeBacktracking();
         }
         if (passed) System.out.println("Passed all tests");
     }
 
-    public static boolean BTreeBacktracking(){
-   /*     if(true)
+    public static boolean BTreeBacktracking() {
+        if(true)
             throw new UnsupportedOperationException("You should add this constructors to the Backtracking BTree class, delete this afterwards");
         /*
     public BacktrackingBTree(int order) {
@@ -53,39 +53,35 @@ public class Tests extends BacktrackingAVL{
         super();
     }*/
         boolean allSucc = true;
-        for (int j = 0; j < 20;j++) {
-            BacktrackingBTree<Integer> tree = new BacktrackingBTree(((int) (Math.random() * 6) + 2));
+
+        BacktrackingBTree<Integer> tree = new BacktrackingBTree(((int) (Math.random() * 19) + 2));
 
 
-            //INSERT HERE HOW MANY ITEMS YOU WANT TO BE INSERTED
-            int num = (int) Math.random() * 10000;
-            //************************//
-            String[] trees = new String[num];
-            List<Integer> l = new ArrayList<>();
-            for (int i = 0; i < num; i++) {
-                int toAdd = (int) (Math.random() * num * 10000);
-                while (l.contains(toAdd)) {
-                    toAdd = (int) (Math.random() * num * 10000);
-                }
-                l.add(toAdd);
-                trees[i] = tree.toString();
-                tree.insert(toAdd);
+        //INSERT HERE HOW MANY ITEMS YOU WANT TO BE INSERTED
+        int num = (int) (Math.random() *1000);
+        //************************//
+        String[] trees = new String[num];
+        List<Integer> l = new ArrayList<>();
+        for (int i = 0; i < num; i++) {
+            int toAdd = (int) (Math.random() * num * 10000);
+            while (l.contains(toAdd)) {
+                toAdd = (int) (Math.random() * num * 10000);
             }
-            for (int i = num; i > 0 && allSucc; ) {
-                String treeBefore = tree.toString();
-                tree.Backtrack();
-                if (!tree.toString().equals(trees[--i])) {
-                    System.out.println("Failed in tree when backtracking key value: " + l.get(i) + "\n tree before: \n" + treeBefore + "\n origin tree: \n" + trees[i + 1]);
-                    System.out.println("expected tree: \n" + trees[i]);
-                    System.out.println();
-                    System.out.println("actual tree: \n" + tree);
-                    allSucc = false;
-                }
+            l.add(toAdd);
+            trees[i] = tree.toString();
+            tree.insert(toAdd);
+        }
+        for (int i = num; i > 0 && allSucc; ) {
+            String treeBefore = tree.toString();
+            tree.Backtrack();
+            if (!tree.toString().equals(trees[--i])) {
+                System.out.println("Failed in tree when backtracking key value: " + l.get(i) + "\n tree before: \n" + treeBefore + "\n origin tree: \n" + trees[i + 1]);
+                System.out.println("expected tree: \n" + trees[i]);
+                System.out.println();
+                System.out.println("actual tree: \n" + tree);
+                allSucc = false;
+            }
 
-            }
-            if(!allSucc){
-                break;
-            }
         }
         return allSucc;
     }
