@@ -1,5 +1,8 @@
 
 import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class Tests extends BacktrackingAVL{
 
     private static Tests t = new Tests();
@@ -26,6 +29,7 @@ public class Tests extends BacktrackingAVL{
         if (passed) System.out.println("Passed all tests");
 
     }
+
 
 
 
@@ -209,10 +213,10 @@ public class Tests extends BacktrackingAVL{
         }
     }
     public Iterator<Node> getInorderIteratorNode() {
-        return new BacktrackingAVL.InorderIterator(this.root);
+        return new Tests.InorderIterator(this.root);
     }
     public Iterator<Node> getPreorderIteratorNode() {
-        return new BacktrackingAVL.PreorderIterator(this.root);
+        return new Tests.PreorderIterator(this.root);
     }
 
 
