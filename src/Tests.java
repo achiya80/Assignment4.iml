@@ -11,6 +11,7 @@ public class Tests extends BacktrackingAVL{
 
     public static void main(String[] args){
         testAVLTreeBacktracking();
+        testAVLTreeContinuesBacktracking();
         testBTreeBacktracking();
     }
 
@@ -55,7 +56,6 @@ public class Tests extends BacktrackingAVL{
         boolean allSucc = true;
 
         BacktrackingBTree<Integer> tree = new BacktrackingBTree(((int) (Math.random() * 19) + 2));
-
 
         //INSERT HERE HOW MANY ITEMS YOU WANT TO BE INSERTED
         int num = (int) (Math.random() *1000);
@@ -124,7 +124,51 @@ public class Tests extends BacktrackingAVL{
         return passed;
     }
 
+    public static void testAVLTreeContinuesBacktracking(){
+        System.out.println("test AVL Tree Backtracking:");
+        boolean passed = true;
+        for (int i = 0; i< 100 & passed;i++){
+            passed &= BacktrackingAVL();
+        }
+        if(passed) System.out.println("Passed All tests");
+    }
+    public static boolean BacktrackingAVL(){
+        int rrr = 500;
+        t = new Tests();
+        Boolean passed = true;
+        LinkedList<Integer> list = new LinkedList<>();
+        int re = (int)(Math.random()*140);
+        String[] trees = new String[re];
+        for(int i = 0;i < re; i++){
+            int ran = (int)(Math.random()*rrr);
+            while (list.contains(ran)){
+                ran = (int)(Math.random()*rrr);
+            }
+            list.add(ran);
+            trees[i] = toString(t);
+            t.insert(ran);
+        }
+        for (int i = re; i > 0 & passed;){
+            t.Backtrack();
+            passed &= toString(t).equals(trees[--i]);
+            if(!passed) System.out.println("Failed in continues Backtracking");
+        }
+        return passed;
+    }
 
+
+    public static String toString(Tests t){
+        Iterator<Node> it1 = t.getInorderIteratorNode();
+        Iterator<Node> it2 = t.getPreorderIteratorNode();
+        String res = "";
+        while (it1.hasNext() && it2.hasNext()){
+            Node t1 = it1.next();
+            Node t2 = it2.next();
+            res+=t1.value+""+t1.height+""+NodeToString(t1.parent)+""+NodeToString(t1.left)+""+NodeToString(t1.right)
+            +""+t2.value+""+t2.height+""+NodeToString(t2.parent)+""+NodeToString(t2.left)+""+NodeToString(t2.right);
+        }
+        return res;
+    }
     public static boolean AVLTreeEquals(Tests t1, Tests t2){
         if(!t1.equals(t2)){
             System.out.println("Expected Tree: ");
@@ -169,7 +213,7 @@ public class Tests extends BacktrackingAVL{
         }
         return true;
     }
-    private String NodeToString(Node n){
+    private static String NodeToString(Node n){
         return (n == null) ? "null" : "" + n.value;
     }
 
